@@ -1,0 +1,39 @@
+{%extends "base.html"%} {% block content %}
+
+  <div class="container row mx-auto h-screen ">
+    {%for post in posts%}
+<div class="pt-10"></div>
+    <a href="{% url 'blog:blog-details' post.slug %}">
+      <div class="flex flex-row gap-5 pb-20">
+        <div class="basis-1/3 flex items-center">
+          {% if post.image %}
+          <img
+            class="object-coverfloat-left h-[50vh] w-[50vh] shadow-xl rounded-lg"
+            src="{{post.image.url}}"
+            alt="no image"
+          />
+
+          {%else%}
+
+          <img
+          class="object-coverfloat-left h-[50vh] w-[50vh] shadow-xl rounded-lg"
+          src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="no image"
+          />
+          {%endif%}
+        </div>
+
+        <div class="basis-1/2 flex-auto w-32 mt-3 text-justify">
+          <article class="font-Georgia">
+            <time>{{post.publish}}</time>
+            <h2 class="text-sky-400 text-2xl pt-2 pb-8">{{post.title}}</h2>
+            <p class="line-clamp-6 mb-8">{{post.content}}</p>
+            <div class="mb-20">{{post.author}}</div>
+          </article>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{%endblock%}
